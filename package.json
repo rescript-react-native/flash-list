@@ -1,16 +1,19 @@
 {
-  "name": "@rescript-react-native/__template__",
-  "description": "ReScript bindings for react-native-XXXXXXXXXX",
-  "version": "0.0.0",
+  "name": "@rescript-react-native/flash-list",
+  "description": "ReScript bindings for @shopify/flash-list",
+  "version": "1.7.0",
   "publishConfig": {
     "access": "public"
   },
-  "peerDependencies": {},
+  "peerDependencies": {
+    "@rescript/react": ">=0.12.0",
+    "rescript-react-native": ">=0.73.1",
+    "@shopify/flash-list": ">=1.7.0"
+  },
   "overrides": {
     "react": "18.0.0"
   },
-  "repository": "https://github.com/rescript-react-native/__template__.git",
-  "funding": "https://github.com/rescript-react-native/rescript-react-native?sponsor=1",
+  "repository": "https://github.com/rescript-react-native/flash-list.git",
   "license": "MIT",
   "keywords": [
     "rescript",
@@ -39,6 +42,9 @@
   },
   "devDependencies": {
     "rescript": "^11.1.0",
+    "@rescript/react": "^0.12.2",
+    "rescript-react-native": ">=0.73.1",
+    "@shopify/flash-list": "^1.7.3",
     "husky": "^8.0.0",
     "lint-staged": "^13.0.0",
     "npmpub": "^5.0.0",

@@ -1,56 +1,31 @@
-## How to use this template
+# `@rescript-react-native/flash-list`
 
-- ⚠️ **Don't fork this repository.** Use the "Use this template" green GitHub
-  button.
-- Put your bindings in `src/ReactNativeXxxxxxxxxx` & rename accordingly or use
-  `rescript.json` `"namespace"` field (more on this below),
-- Update all occurences of
-
-  - `@rescript-react-native/__template__`
-  - `https://github.com/rescript-react-native/__template__`
-  - `__template__`
-  - `react-native-XXXXXXXXXX`
-  - `https://github.com/OWNER/react-native-XXXXXXXXXX`
-  - `ReactNativeXxxxxxxxxx`. If you have more than a file exposed, you should
-    consider using ReScript custom namespace by adjusting `rescript.json`
-    and adding a `"namespace": "react-native-something"` (note that it will be
-    converted to `ReactNativeXxxxxxxxxx`)
-
-- Add your `react-native-XXXXXXXXXX` (adjusted) in `peerDependencies`
-  & `devDependencies` section
-- Adjust the changelog (and/or clean it)
-- Remove this part ⬆ & keep everything below ⬇
-
----
-
-# `@rescript-react-native/__template__`
-
-[![Build Status](https://github.com/rescript-react-native/__template__/workflows/Build/badge.svg)](https://github.com/rescript-react-native/__template__/actions)
-[![Version](https://img.shields.io/npm/v/@rescript-react-native/__template__.svg)](https://www.npmjs.com/@rescript-react-native/__template__)
+[![Build Status](https://github.com/rescript-react-native/flash-list/workflows/Build/badge.svg)](https://github.com/rescript-react-native/flash-list/actions)
+[![Version](https://img.shields.io/npm/v/@rescript-react-native/flash-list.svg)](https://www.npmjs.com/@rescript-react-native/flash-list)
 [![ReScript Forum](https://img.shields.io/discourse/posts?color=e6484f&label=ReScript%20Forum&server=https%3A%2F%2Fforum.rescript-lang.org)](https://forum.rescript-lang.org/)
 
 [ReScript](https://rescript-lang.org) bindings for
-[`react-native-XXXXXXXXXX`](https://github.com/OWNER/react-native-XXXXXXXXXX).
+[`flash-list`](https://github.com/Shopify/flash-list).
 
-Exposed as `ReactNativeXxxxxxxxxx` module.
+Exposed as `FlashList` module.
 
-`@rescript-react-native/__template__` X.y.\* means it's compatible with
-`react-native-XXXXXXXXXX` X.y.\*
+`@rescript-react-native/flash-list` X.y.\* means it's compatible with
+`@shopify/flash-list` X.y.\*
 
 ## Installation
 
 When
-[`react-native-XXXXXXXXXX`](https://github.com/OWNER/react-native-XXXXXXXXXX)
+[`@shopify/flash-list`](https://github.com/Shopify/flash-list)
 is properly installed & configured by following their installation instructions,
 you can install the bindings:
 
 ```console
-npm install @rescript-react-native/__template__
+npm install @rescript-react-native/flash-list
 # or
-yarn add @rescript-react-native/__template__
+yarn add @rescript-react-native/flash-list
 ```
 
-`@rescript-react-native/__template__` should be added to `bs-dependencies` in your
+`@rescript-react-native/flash-list` should be added to `bs-dependencies` in your
 `rescript.json`:
 
 ```diff
@@ -60,7 +35,7 @@ yarn add @rescript-react-native/__template__
     "@rescript/react",
     "rescript-react-native",
     // ...
-+    "@rescript-react-native/__template__"
++    "@rescript-react-native/flash-list"
   ],
   //...
 }
@@ -68,17 +43,25 @@ yarn add @rescript-react-native/__template__
 
 ## Usage
 
-### Types
-
-#### `ReactNativeXxxxxxxxxx.t`
-
-...
-
 ### Methods
 
-#### `ReactNativeXxxxxxxxxx.method`
+#### `<FlashList>`
 
-...
+```rescript
+open ReactNative;
+
+@react.component
+let make = () => {
+  <FlashList
+    data={[{"id": "1", "name": "Foo"}]}
+    keyExtractor={(item, _) => item["id"]}
+    renderItem={({item}) =>
+      <View>
+        <Text> {item["name"]->React.string} </Text>
+      </View>}
+  />
+}
+```
 
 ---
 
