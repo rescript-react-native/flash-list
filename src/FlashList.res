@@ -4,21 +4,19 @@ type index = int
 
 type renderItemProps<'item> = {item: 'item, index: index}
 
-type itemLayout = {@set "span": int, @set "size": float}
+type itemLayout = {@set "span": int}
 
-type dimension = {height: float, width: float}
+type cellRendererComponentProps = {
+  ref?: NativeElement.ref,
+  children: React.element,
+  index: index,
+  onLayout: Event.layoutEvent => unit,
+  style: Style.t,
+}
 
 module CellContainer = {
-  type props = {
-    ref?: NativeElement.ref,
-    children: React.element,
-    index: index,
-    onLayout: Event.layoutEvent => unit,
-    style: Style.t,
-  }
-
-  @module("@shopify/flash-list")
-  external make: React.component<props> = "CellContainer"
+  @deprecated("Use cellRendererComponentProps instead")
+  type props = cellRendererComponentProps
 }
 
 type element
@@ -69,44 +67,48 @@ type viewabilityConfig = {
   waitForInteraction?: bool,
 }
 
-type recyclerListViewProps = {
-  initialOffset?: float,
-  renderAheadOffset?: float,
-  scrollThrottle?: int,
+type maintainVisibleContentPosition = {
+  disabled?: bool,
+  autoscrollToTopThreshold?: float,
+  autoscrollToBottomThreshold?: float,
+  animateAutoScrollToBottom?: bool,
+  startRenderingFromBottom?: bool,
 }
+
+type initialScrollIndexParams = {viewOffset?: float}
 
 type props<'item> = {
   ref?: ref,
-  ...ScrollView.scrollViewProps,
-  ...recyclerListViewProps,
+  ...ScrollView.scrollViewPropsWithoutListConflict,
   renderItem: renderItemProps<'item> => React.element,
   data: array<'item>,
-  estimatedItemSize?: float,
-  \"CellRendererComponent"?: CellContainer.props => React.element,
+  \"CellRendererComponent"?: cellRendererComponentProps => React.element,
   \"ItemSeparatorComponent"?: unit => React.element,
   \"ListEmptyComponent"?: React.element,
   \"ListFooterComponent"?: unit => React.element,
   \"ListFooterComponentStyle"?: Style.t,
   \"ListHeaderComponent"?: unit => React.element,
   \"ListHeaderComponentStyle"?: Style.t,
-  disableAutoLayout?: bool,
-  disableHorizontalListHeightMeasurement?: bool,
   drawDistance?: float,
-  estimatedFirstItemOffset?: float,
-  estimatedListSize?: dimension,
   extraData?: {.},
   initialScrollIndex?: int,
-  inverted?: bool,
+  initialScrollIndexParams?: initialScrollIndexParams,
   keyExtractor: ('item, index) => string,
+  maintainVisibleContentPosition?: maintainVisibleContentPosition,
+  masonry?: bool,
+  maxItemsInRecyclePool?: bool,
   numColumns?: int,
-  //onBlankArea: TODO
+  onCommitLayoutEffect?: unit => unit,
   onEndReached?: unit => unit,
   onEndReachedThreshold?: float,
   //onLoad: TODO
-  onViewableItemsChanged?: viewableInfo<'item> => unit,
   onRefresh?: unit => unit,
   getItemType?: ('item, index) => string,
-  overrideItemLayout?: (itemLayout, 'item, index) => unit,
+  onStartReached?: unit => unit,
+  onStartReachedThreshold?: float,
+  onViewableItemsChanged?: viewableInfo<'item> => unit,
+  optimizeItemArrangement?: bool,
+  overrideItemLayout?: (itemLayout, 'item) => unit,
   // overrideProps: TODO
   progressViewOffset?: float,
   refreshing?: bool,
