@@ -6,17 +6,12 @@ type renderItemProps<'item> = {item: 'item, index: index}
 
 type itemLayout = {@set "span": int}
 
-type cellRendererComponentProps = {
-  ref?: NativeElement.ref,
+type cellRendererComponentProps<'element> = {
+  ref?: Ref.t<'element>,
   children: React.element,
   index: index,
   onLayout: Event.layoutEvent => unit,
   style: Style.t,
-}
-
-module CellContainer = {
-  @deprecated("Use cellRendererComponentProps instead")
-  type props = cellRendererComponentProps
 }
 
 type element
@@ -77,12 +72,12 @@ type maintainVisibleContentPosition = {
 
 type initialScrollIndexParams = {viewOffset?: float}
 
-type props<'item> = {
+type props<'item, 'cellElement> = {
   ref?: ref,
   ...ScrollView.scrollViewPropsWithoutListConflict,
   renderItem: renderItemProps<'item> => React.element,
   data: array<'item>,
-  \"CellRendererComponent"?: cellRendererComponentProps => React.element,
+  \"CellRendererComponent"?: cellRendererComponentProps<'cellElement> => React.element,
   \"ItemSeparatorComponent"?: unit => React.element,
   \"ListEmptyComponent"?: React.element,
   \"ListFooterComponent"?: unit => React.element,
@@ -117,9 +112,9 @@ type props<'item> = {
 }
 
 @module("@shopify/flash-list")
-external make: React.component<props<'item>> = "FlashList"
+external make: React.component<props<'item, 'cellElement>> = "FlashList"
 
 module AnimatedFlashList = {
   @module("@shopify/flash-list")
-  external make: React.component<props<'item>> = "AnimatedFlashList"
+  external make: React.component<props<'item, 'cellElement>> = "AnimatedFlashList"
 }
