@@ -92,6 +92,7 @@ type props<'item, 'extraData, 'cellElement> = {
   \"ListFooterComponentStyle"?: Style.t,
   \"ListHeaderComponent"?: unit => React.element,
   \"ListHeaderComponentStyle"?: Style.t,
+  \"ListEmptyComponentStyle"?: Style.t,
   drawDistance?: float,
   extraData?: 'extraData,
   initialScrollIndex?: int,
