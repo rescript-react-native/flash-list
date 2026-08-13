@@ -70,6 +70,14 @@ type maintainVisibleContentPosition = {
   startRenderingFromBottom?: bool,
 }
 
+type stickyHeaderConfig = {
+  useNativeDriver?: bool,
+  offset?: float,
+  backdropComponent?: React.element,
+  zIndex?: int,
+  hideRelatedCell?: bool,
+}
+
 type initialScrollIndexParams = {viewOffset?: float}
 
 type props<'item, 'extraData, 'cellElement> = {
@@ -109,6 +117,8 @@ type props<'item, 'extraData, 'cellElement> = {
   refreshing?: bool,
   renderScrollComponent?: React.component<ScrollView.props>,
   viewabilityConfig?: viewabilityConfig,
+  stickyHeaderConfig?: stickyHeaderConfig,
+  onChangeStickyIndex?: (~current: index, ~previous: index) => unit,
 }
 
 @module("@shopify/flash-list")
