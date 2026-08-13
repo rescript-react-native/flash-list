@@ -120,6 +120,7 @@ type props<'item, 'extraData, 'cellElement> = {
   viewabilityConfig?: viewabilityConfig,
   stickyHeaderConfig?: stickyHeaderConfig,
   onChangeStickyIndex?: (~current: index, ~previous: index) => unit,
+  inverted?: bool,
 }
 
 @module("@shopify/flash-list")
