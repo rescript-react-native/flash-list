@@ -1,5 +1,9 @@
 # Changelog of `@rescript-react-native/flash-list`
 
+## 2.3.0 - 2026-08-13
+
+- add missing props: `stickyHeaderConfig`, `onChangeStickyIndex`, `ListEmptyComponentStyle` `inverted` and `extraData` to `renderItem` by @freddy03h
+
 ## 2.1.0 - 2026-04-14
 
 - update `rescript-react-native` and adapt to `NativeElement` change @freddy03h
