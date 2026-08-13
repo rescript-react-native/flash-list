@@ -2,7 +2,7 @@ open ReactNative
 
 type index = int
 
-type renderItemProps<'item> = {item: 'item, index: index}
+type renderItemProps<'item, 'extraData> = {item: 'item, index: index, extraData: 'extraData}
 
 type itemLayout = {@set "span": int}
 
@@ -72,10 +72,10 @@ type maintainVisibleContentPosition = {
 
 type initialScrollIndexParams = {viewOffset?: float}
 
-type props<'item, 'cellElement> = {
+type props<'item, 'extraData, 'cellElement> = {
   ref?: ref,
   ...ScrollView.scrollViewPropsWithoutListConflict,
-  renderItem: renderItemProps<'item> => React.element,
+  renderItem: renderItemProps<'item, 'extraData> => React.element,
   data: array<'item>,
   \"CellRendererComponent"?: cellRendererComponentProps<'cellElement> => React.element,
   \"ItemSeparatorComponent"?: unit => React.element,
@@ -85,7 +85,7 @@ type props<'item, 'cellElement> = {
   \"ListHeaderComponent"?: unit => React.element,
   \"ListHeaderComponentStyle"?: Style.t,
   drawDistance?: float,
-  extraData?: {.},
+  extraData?: 'extraData,
   initialScrollIndex?: int,
   initialScrollIndexParams?: initialScrollIndexParams,
   keyExtractor: ('item, index) => string,
@@ -112,9 +112,9 @@ type props<'item, 'cellElement> = {
 }
 
 @module("@shopify/flash-list")
-external make: React.component<props<'item, 'cellElement>> = "FlashList"
+external make: React.component<props<'item, 'extraData, 'cellElement>> = "FlashList"
 
 module AnimatedFlashList = {
   @module("@shopify/flash-list")
-  external make: React.component<props<'item, 'cellElement>> = "AnimatedFlashList"
+  external make: React.component<props<'item, 'extraData, 'cellElement>> = "AnimatedFlashList"
 }
